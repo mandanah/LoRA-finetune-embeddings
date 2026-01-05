@@ -210,6 +210,7 @@ dependencies = [
     { name = "numpy" },
     { name = "peft" },
     { name = "torch" },
+    { name = "tqdm" },
     { name = "transformers" },
 ]
 
@@ -218,6 +219,7 @@ requires-dist = [
     { name = "numpy", specifier = ">=2.4.0" },
     { name = "peft", specifier = ">=0.18.0" },
     { name = "torch", specifier = ">=2.9.1" },
+    { name = "tqdm", specifier = ">=4.67.1" },
     { name = "transformers", specifier = ">=4.57.3" },
 ]
 
