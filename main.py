@@ -1,6 +1,6 @@
 import torch
 from loss_function import multiple_negative_ranking_loss
-from config import EPOCHS, BATCH_SIZE, LEARNING_RATE, MODEL_NAME, SAVE_DIR
+from config import EPOCHS, BATCH_SIZE, LEARNING_RATE, MODEL_NAME, SAVE_DIR, MAX_LENGTH
 from data.dataset import PairDataset
 from model import EncoderModel, build_lora_encoder
 from torch.utils.data import DataLoader
@@ -15,14 +15,16 @@ def train():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     pairs = load_toy_data()
     ds = PairDataset(pairs)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+
     train_loader = DataLoader(
         ds,
         batch_size=BATCH_SIZE,
         shuffle=True,
-        collate_fn=lambda x: collator_function(x),
-        drop_last=True,
+        collate_fn=lambda x: collator_function(
+            x, tokenizer=tokenizer, max_length=MAX_LENGTH
+        ),
     )
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
     model = build_lora_encoder(MODEL_NAME)
     model = EncoderModel(model).to(device)
@@ -59,7 +61,7 @@ def train():
         print(f"Epoch {epoch + 1}/{EPOCHS}, Average Loss: {avg_loss:.4f}")
         torch.save(model.state_dict(), f"lora_finetuned_epoch{epoch + 1}.pth")
     model.eval()
-    model.encoder.save_pretrained(SAVE_DIR)  # saves LoRA adapter + config
+    model.base_model.save_pretrained(SAVE_DIR)  # saves LoRA adapter + config
     tokenizer.save_pretrained(SAVE_DIR)  # saves tokenizer files
 
 

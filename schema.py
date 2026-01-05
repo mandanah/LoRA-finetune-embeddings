@@ -3,7 +3,7 @@ import torch
 
 
 @dataclass
-class PairData:
+class PairBatch:
     anchor_input_ids: torch.Tensor
     anchor_attention_mask: torch.Tensor
     positive_attention_mask: torch.Tensor
