@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Model files and checkpoints
+*.pth
+*.pt
+*.bin
+*.ckpt
+*.safetensors
+lora_fashion_embedder/
+checkpoints/
+models/
+
+# Data files (uncomment if you don't want to commit data)
+# data/
+# *.csv
+# *.json
+# *.parquet
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+logs/
+wandb/
+
+# Cache directories
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment variables
+.env
+.env.local
+
+# UV lock file (optional - some prefer to commit this)
+# uv.lock
