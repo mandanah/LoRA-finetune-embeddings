@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit Message Tool"
+  short_description: "Generate concise standardized Git commit messages"
+  default_prompt: "Generate one brief, clean, standardized Git commit message from current changes."
