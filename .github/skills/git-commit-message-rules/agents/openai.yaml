@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit Message Writer"
+  short_description: "Generate brief, standardized commit messages"
+  default_prompt: "Generate a brief, clean, standardized Git commit message from the current diff."

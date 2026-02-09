@@ -5,6 +5,8 @@ from peft import get_peft_model, LoraConfig, TaskType
 
 
 class EncoderModel(nn.Module):
+    """A wrapper around a transformer model to produce mean-pooled, normalized embeddings."""
+
     def __init__(self, base_model):
         super().__init__()
         self.base_model = base_model
